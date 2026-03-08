@@ -1,11 +1,12 @@
 export const Personal_info = {
   name: "A",
-  title: "Programmer",
+  title: "Backend Programmer",
   email: "CoolTempEmail@gmail.com",
-  location: "Virtual",
+  location: "Virtually",
   tagline: "Cool tuff line",
   resume: "public\temp resume file annoation reading.pdf",
   bio: ["Hey Tuff temp bio", "Cool temp bio again", "Another temp bio"],
+  avalibility: "Friday-Saturday\n" + "8am Cst - 5pm Cst",
 };
 
 export const Social_links = {
