@@ -91,18 +91,42 @@ const Hero = () => {
                 <div className="absolute bottom-6 left-6 z-20">
                   <FadeIn delay={500}>
                     <div className="flex items-center gap-4 bg-black/40 backdrop-blur-sm border border-white/10 rounded-full px-6 py-3">
-                      <div className="w-6 h-6 flex items-center justify-center hover:scale-115 transition-transform duration-300">
-                        <SiPython className="w-full h-full text-white" />
-                      </div>
-                      <div className="w-6 h-6 flex items-center justify-center hover:scale-115 transition-transform duration-300">
-                        <SiLuau className="w-full h-full text-white" />
-                      </div>
-                      <div className="w-6 h-6 flex items-center justify-center hover:scale-115 transition-transform duration-300">
-                        <SiGit className="w-full h-full text-white" />
-                      </div>
-                      <div className="w-6 h-6 flex items-center justify-center hover:scale-115 transition-transform duration-300">
-                        <SiCplusplus className="w-full h-full text-white" />
-                      </div>
+                      <a
+                        href="https://python.org"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
+                        <div className="w-6 h-6 flex items-center justify-center hover:scale-115 transition-transform duration-300">
+                          <SiPython className="w-full h-full text-white hover:text-[#3776AB] transition-colors duration-300" />
+                        </div>
+                      </a>
+                      <a
+                        href="https://luau.org/"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
+                        <div className="w-6 h-6 flex items-center justify-center hover:scale-115 transition-transform duration-300">
+                          <SiLuau className="w-full h-full text-white hover:text-[#00A2FF] transition-colors duration-300" />
+                        </div>
+                      </a>
+                      <a
+                        href="https://git-scm.com/"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
+                        <div className="w-6 h-6 flex items-center justify-center hover:scale-115 transition-transform duration-300">
+                          <SiGit className="w-full h-full text-white hover:text-[#F05032] transition-colors duration-300" />
+                        </div>
+                      </a>
+                      <a
+                        href="https://cplusplus.com/"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
+                        <div className="w-6 h-6 flex items-center justify-center hover:scale-115 transition-transform duration-300">
+                          <SiCplusplus className="w-full h-full text-white hover:text-[#00599C] transition-colors duration-300" />
+                        </div>
+                      </a>
                     </div>
                   </FadeIn>
                 </div>
