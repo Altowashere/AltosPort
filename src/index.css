@@ -11,6 +11,9 @@
   html {
     font-family: var(--font-display);
     scroll-behavior: smooth;
+    /* copyed the code from down below and pasted it here bc now i have to paste it in the html for it to actualy hide */
+    -ms-overflow-style: none;
+    scrollbar-width: none;
   }
 
   body {

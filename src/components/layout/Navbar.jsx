@@ -31,16 +31,16 @@ const Navbar = () => {
     >
       <div className="max-w-[1320px] mx-auto px-5">
         <div className="flex items-center justify-between">
-          {/*logo*/}
+          {/*logo Aka my name*/}
           <div className="flex items-center gap-4">
-            <Code className="w-6 h-6 text-primary hover:scale-110 transform-all duration-300" />
+            <Code className="w-6 h-6 text-[#C9A84C] hover:scale-110 transform-all duration-300" />
 
             <button
               onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
-              className="text-2xl font-bold bg-linear-to-r from-primary via-primary/50 to-primary/30 bg-clip-text text-transparent hover:opacity-80 transition-opacity hover:scale-110 transform-all duration-300"
+              className="text-2xl font-bold bg-linear-to-r from-[#C9A84C] via-[#C9A84C]/50 to-[#C9A84C]/30 bg-clip-text text-transparent hover:opacity-80 transition-opacity  transform-all duration-300"
               aria-label="home"
             >
-              {Personal_info.name.split("")[0]}
+              {Personal_info.name.split("")}
             </button>
           </div>
 
@@ -65,7 +65,7 @@ const Navbar = () => {
           <div className="hidden md:flex items-center gap-2">
             <button
               onClick={() => handleNavClick("contact")}
-              className="px-2.75 py-3 bg-white text-[#212121] font-medium text-base rounded-[14px] border border-white hover:bg-white/90 transition-all duration-300 hover:scale-105"
+              className="px-2.75 py-3 bg-white text-[#212121] font-medium text-base rounded-[14px] border border-white hover:bg-white/90 hover:scale-105 transition-all duration-500"
             >
               Navbar.jsx
             </button>

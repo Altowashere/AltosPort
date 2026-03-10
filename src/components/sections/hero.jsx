@@ -9,16 +9,16 @@ import RadialGradientBackground from "../backgrounds/RadialGradientBackground";
 const Hero = () => {
   return (
     <section className="relative min-h-screen flex items-center overflow-hidden bg-black">
-      {/* <RadialGradientBackground varient="hero" /> */}
+      <RadialGradientBackground varient="hero" />
 
-      {/*Content container*/}
+      {/*Content container The cool thing witht he star*/}
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 w-full">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
           {/*Left column - content has the button and title and everything kinda*/}
           <div className="text-left">
             <FadeIn delay={0}>
-              <div className="inline-flex items-center gap-2.5 px-[18px] py-[11px] mb-8 bg-linear-to-r from-primary/10 via-primary/15 to-primary/20 border border-primary/20 rounded-full">
-                <Star className="w-4 h-4 text-white fill-white" />
+              <div className="inline-flex items-center gap-2.5 px-[18px] py-[11px] mb-8 bg-linear-to-r from-[#C9A84C]/10 via-[#C9A84C]/15 to-[#C9A84C]/20 border border-[#C9A84C]/20 rounded-full">
+                <Star className="w-4 h-4 text-[#C9A84C] fill-[#C9A84C] hover:scale-125 transition-transform duration-300" />
                 <span className="text-xs md:text-sm text-white tracking-[1.2px]">
                   {Personal_info.title} | Based {Personal_info.location}
                 </span>
@@ -58,7 +58,7 @@ const Hero = () => {
                     key={index}
                     className="text-left border-r  border-white/50 pr-10 last:border-r-0"
                   >
-                    <div className="text-2xl font-large text-primary mb-[8px] font-mono">
+                    <div className="text-2xl font-large text-[#C9A84C] mb-[8px] font-mono">
                       {stat.value}
                     </div>
                     <p className="text-sm text-white leading-snug">
@@ -135,6 +135,13 @@ const Hero = () => {
           </FadeIn>
         </div>
       </div>
+      {/*  Scroll indicator (Green arrow thing pointing down)  */}
+      <button
+        onClick={() => scrollToSection("about")}
+        className="absolute bottom-8 left-1/2 -translate-x-1/2 animate-bounce"
+      >
+        <ChevronDown className="w-8 h-8 text-white" />
+      </button>
     </section>
   );
 };
