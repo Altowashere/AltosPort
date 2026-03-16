@@ -68,7 +68,7 @@ const Navbar = () => {
               onClick={() => handleNavClick("contact")}
               className="px-2.75 py-3 bg-white text-[#212121] font-medium text-base rounded-[14px] border border-white hover:bg-white/90 hover:scale-105 transition-all duration-500"
             >
-              Navbar.jsx
+              big word
             </button>
           </div>
 

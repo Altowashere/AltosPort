@@ -27,16 +27,17 @@ const Hero = () => {
 
             <FadeIn delay={100}>
               <h1 className="text-4xl md:text-5xl lg:text-6xl font-normal text-white mb-6 leading-tight max-w-[500px]">
-                Cool Tuff Backend Portfolio - Hero.jsx
+                Cool big word for testing purposes
               </h1>
             </FadeIn>
 
             <FadeIn delay={200}>
               <p className="text-lg text-white/70 max-w-[550px] mb-8 ">
-                Lorem, ipsum dolor sit amet consectetur adipisicing elit.
-                Voluptas tenetur, cumque recusandae molestiae facere eveniet,
-                repellat nulla maxime ducimus minus odio, nam praesentium esse
-                nihil excepturi corrupti aliquid omnis repudiandae! - hero.jsx
+                Another cool big word for testing purposes Lorem ipsum dolor sit
+                amet consectetur adipisicing elit. Doloremque dolorum similique
+                pariatur perferendis, ducimus minus distinctio magni repellendus
+                corrupti ratione laborum optio odio aperiam quas nemo numquam
+                natus sapiente maiores.
               </p>
             </FadeIn>
 
@@ -52,16 +53,16 @@ const Hero = () => {
             </FadeIn>
 
             <FadeIn delay={400}>
-              <div className="grid grid-cols-2 lg:grid-cols-4 gap-6 max-w-full">
+              <div className="grid grid-cols-2 lg:grid-cols-4 gap-6 max-w-full ">
                 {STATS.map((stat, index) => (
                   <div
                     key={index}
                     className="text-left border-r  border-white/50 pr-10 last:border-r-0"
                   >
-                    <div className="text-2xl font-large text-[#C9A84C] mb-[8px] font-mono">
+                    <div className="text-2xl font-large text-[#C9A84C] mb-[8px] font-mono ">
                       {stat.value}
                     </div>
-                    <p className="text-sm text-white leading-snug">
+                    <p className="text-sm text-white leading-snug ">
                       {stat.label}
                     </p>
                   </div>
