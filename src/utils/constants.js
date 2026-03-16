@@ -5,7 +5,11 @@ export const Personal_info = {
   location: "Virtually",
   tagline: "Cool tuff line",
   resume: "public\temp resume file annoation reading.pdf",
-  bio: ["Hey Tuff temp bio", "Cool temp bio again", "Another temp bio"],
+  bio: [
+    "I'm a student and self-taught developer with a passion for building clean, purposeful software.",
+    "I started coding on my own, picking up languages and frameworks through projects and curiosity rather than a classroom.",
+    "I enjoy turning ideas into real things — whether that's a polished UI, a useful tool, or something I just wanted to exist.",
+  ],
   avalibility: "Friday-Saturday\n" + "8am Cst - 5pm Cst",
 };
 
@@ -24,9 +28,9 @@ export const STATS = [
 ];
 
 export const About_STATS = [
-  { label: "Happy Clients", value: "N/A" },
+  { label: "ill do it later", value: "N/A" },
   { label: "Code Commits", value: "100+" },
-  { label: "GitHub Stars", value: "N/A" },
+  { label: "ill do it later", value: "N/A" },
 ];
 
 export const NAV_LINKS = [

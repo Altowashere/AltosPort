@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import FadeIn from "../animations/fadein";
+import Navbar from "../layout/Navbar";
 
 const WipBanner = () => {
   // useState(true) means the modal is visible by default when the page loads.
@@ -34,6 +35,9 @@ const WipBanner = () => {
   // false, and the next render hits this line and returns null, making the
   // modal disappear.
   if (!visible) return null;
+  if (!visible) {
+    Navbar: setVisible(false)
+  }
 
   return (
     // React requires a single root element. Since we need two sibling divs
@@ -49,7 +53,7 @@ const WipBanner = () => {
           - onClick: clicking anywhere on the backdrop calls setVisible(false),
             which closes the modal — same behavior as clicking outside a dialog */}
       <div
-        className="fixed inset-0 z-40 bg-black/60 backdrop-blur-sm"
+        className="fixed inset-0 z-[1010] bg-black/60 backdrop-blur-sm"
         onClick={() => setVisible(false)}
       />
 
@@ -60,7 +64,7 @@ const WipBanner = () => {
           - flex items-center justify-center: centers its child (the modal card)
             both vertically and horizontally on the screen
           - px-4: horizontal padding so the modal doesn't touch screen edges on mobile */}
-      <div className="fixed inset-0 z-50 flex items-center justify-center px-4">
+      <div className="fixed inset-0 z-[1020] flex items-center justify-center px-4">
         {/* FADEIN ANIMATION WRAPPER
             FadeIn is a custom component that uses IntersectionObserver to trigger
             a CSS fade animation when the element enters the viewport.
@@ -108,7 +112,7 @@ const WipBanner = () => {
                 - text-center: centers the text to match the centered title above */}
             <p className="text-white/50 text-sm leading-relaxed mb-6 text-center">
               This site is actively being built. All text, values, and content
-              will be updated at a later date.
+              will be updated after website framework is finished.
             </p>
 
             {/* DISMISS BUTTON

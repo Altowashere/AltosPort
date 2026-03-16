@@ -8,11 +8,11 @@ import WipBanner from "./components/ui/WipBanner";
 const App = () => {
   return (
     <div className="min-h-screen bg-black pb-[180vh]">
-      <WipBanner />
+      {/* <WipBanner />  */}
       <Navbar />
       <main>
         <Hero />
-        <About />
+        <About/>
       </main>
     </div>
   );

@@ -34,14 +34,13 @@ const Navbar = () => {
         <div className="flex items-center justify-between">
           {/*logo Aka my name*/}
           <div className="flex items-center gap-4">
-            <SiSpacex className="w-6 h-6 scale-175 text-[#C9A84C] hover:scale-185 transform-all duration-300" />
-
             <button
               onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
-              className="text-2xl font-bold bg-linear-to-r from-[#C9A84C] via-[#C9A84C]/50 to-[#C9A84C]/30 bg-clip-text text-transparent hover:opacity-80 transition-opacity  transform-all duration-300"
+              className="flex items-center gap-3 text-2xl font-bold bg-linear-to-r from-[#C9A84C] via-[#C9A84C]/50 to-[#C9A84C]/30 bg-clip-text text-transparent hover:opacity-80 transition-opacity  transform-all duration-300"
               aria-label="home"
             >
-              {Personal_info.name.split("")}
+              <SiSpacex className="w-6 h-6 scale-175 text-[#C9A84C] hover:scale-185 transform-all duration-300" />
+              {Personal_info.name}
             </button>
           </div>
 
