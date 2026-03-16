@@ -8,7 +8,10 @@ import RadialGradientBackground from "../backgrounds/RadialGradientBackground";
 
 const Hero = () => {
   return (
-    <section className="relative min-h-screen flex items-center overflow-hidden bg-black">
+    <section
+      id="hero"
+      className="relative min-h-screen flex items-center overflow-hidden bg-black"
+    >
       <RadialGradientBackground varient="hero" />
 
       {/*Content container The cool thing witht he star*/}

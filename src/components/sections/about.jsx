@@ -90,6 +90,92 @@ const About = () => {
               </button>
             </FadeIn>
           </div>
+          {/* Right Column -info grid  */}
+          {/* Right Column -info grid  */}
+          <FadeIn delay={200}>
+            <div className="grid grid-cols-2 gap-4">
+              <div className="col-span-2 relative group">
+                <div className="absolute inset-0 bg-linear-to-br from-[#C9A84C]/10 to-[#C9A84C]/5 rounded-2xl blur-xl opacity-50 group-hover:opacity-75 transition-opacity duration-300"></div>
+                <div className="relative bg-white/5 border border-white/10 rounded-2xl p-6 hover:border-[#C9A84C]/30 transition-all duration-300">
+                  <div className="flex items-start gap-4">
+                    <div className="p-3 bg-[#C9A84C]/10 rounded-xl">
+                      <Code2 className="w-6 h-6 text-[#C9A84C]" />
+                    </div>
+                    <div className="flex-1">
+                      <h3 className="text-lg font-semibold text-white mb-2">
+                        Expertise
+                      </h3>
+                      <p className="text-sm text-white/70 leading-relaxed">
+                        Chat gpt will fill this out later 😛
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div className="relative group">
+                <div className="absolute inset-0 bg-linear-to-br from-[#C9A84C]/10 to-[#C9A84C]/5 rounded-2xl blur-xl opacity-50 group-hover:opacity-75 transition-opacity duration-300"></div>
+                <div className="relative bg-white/5 border border-white/10 rounded-2xl p-6 hover:border-[#C9A84C]/30 transition-all duration-300">
+                  <div className="p-3 bg-[#C9A84C]/10 rounded-xl w-fit mb-4">
+                    <Cloud className="w-6 h-6 text-[#C9A84C]" />
+                  </div>
+                  <h3 className="text-lg font-semibold text-white mb-2">
+                    Clean Code
+                  </h3>
+                  <p className="text-sm text-white/70 leading-relaxed">
+                    Chat gpt will fill this out later 😛
+                  </p>
+                </div>
+              </div>
+
+              <div className="relative group">
+                <div className="absolute inset-0 bg-linear-to-br from-[#C9A84C]/10 to-[#C9A84C]/5 rounded-2xl blur-xl opacity-50 group-hover:opacity-75 transition-opacity duration-300"></div>
+                <div className="relative bg-white/5 border border-white/10 rounded-2xl p-6 hover:border-[#C9A84C]/30 transition-all duration-300">
+                  <div className="p-3 bg-[#C9A84C]/10 rounded-xl w-fit mb-4">
+                    <Download className="w-6 h-6 text-[#C9A84C]" />
+                  </div>
+                  <h3 className="text-lg font-semibold text-white mb-2">
+                    Performance
+                  </h3>
+                  <p className="text-sm text-white/70 leading-relaxed">
+                    Chat gpt will fill this out later 😛
+                  </p>
+                </div>
+              </div>
+
+              <div className="col-span-2 relative group">
+                <div className="absolute inset-0 bg-linear-to-br from-[#C9A84C]/10 to-[#C9A84C]/5 rounded-2xl blur-xl opacity-50 group-hover:opacity-75 transition-opacity duration-300"></div>
+                <div className="relative bg-white/5 border border-white/10 rounded-2xl p-6 hover:border-[#C9A84C]/30 transition-all duration-300">
+                  <div className="grid grid-cols-3 gap-6 text-center">
+                    <div>
+                      <div className="text-2xl font-bold text-[#C9A84C]/60 mb-1">
+                        N/A
+                      </div>
+                      <div className="text-xs text-white/60">
+                        Temporary Value
+                      </div>
+                    </div>
+                    <div>
+                      <div className="text-2xl font-bold text-[#C9A84C]/60 mb-1">
+                        N/A
+                      </div>
+                      <div className="text-xs text-white/60">
+                        Temporary Value
+                      </div>
+                    </div>
+                    <div>
+                      <div className="text-2xl font-bold text-[#C9A84C]/60 mb-1">
+                        N/A
+                      </div>
+                      <div className="text-xs text-white/60">
+                        Temporary Value
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </FadeIn>
         </div>
       </div>
     </section>

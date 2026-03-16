@@ -7,7 +7,10 @@ import { scrollToSection, useScrollSpy } from "../../hooks/useScrollSpy";
 const Navbar = () => {
   const [isMenuOpen, setisMenuOpen] = useState(false);
   const [isScrolled, setisScrolled] = useState(false);
-  const activeSection = useScrollSpy(NAV_LINKS.map((link) => link.id));
+  const activeSection = useScrollSpy([
+    "hero",
+    ...NAV_LINKS.map((link) => link.id),
+  ]);
 
   useEffect(() => {
     const handleScroll = () => {
