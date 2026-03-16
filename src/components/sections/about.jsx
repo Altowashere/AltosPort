@@ -25,7 +25,7 @@ const About = () => {
   ];
   return (
     <section id="about" className="relative py-20 bg-black overflow-hidden">
-      <RadialGradientBackground variant="about" />
+      <RadialGradientBackground variant="hero" />
 
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Main Grid */}
