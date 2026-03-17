@@ -5,6 +5,8 @@ import About from "./components/sections/about";
 import WipBanner from "./components/ui/WipBanner";
 import { useEffect } from "react";
 import Skills from "../src/components/sections/Skills";
+import Projects from "./components/sections/Projects";
+
 
 
 
@@ -21,7 +23,8 @@ const App = () => {
       <main>
         <Hero />
         <About />
-        <Skills/>
+        <Skills />
+        {/* <Projects/> */}
       </main>
     </div>
   );

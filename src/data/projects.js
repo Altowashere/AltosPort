@@ -4,7 +4,7 @@ export const projects = [
     title: "name",
     description: "describe",
     image: "public\images\projects\Tuff git pfp.jpg",
-    category: "full stack",
+    category: "Full Stack",
     technologies: ["list the languages", "2"],
     metrics: "10 active ccu",
     demourl: "url",
@@ -12,4 +12,4 @@ export const projects = [
   },
 ];
 
-export const categories = ["all", "Frontend", "backend", "fullStack"];
+export const categories = ["All", "Frontend", "Backend", "Full Stack"];
