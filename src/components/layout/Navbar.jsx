@@ -70,7 +70,7 @@ const Navbar = () => {
               onClick={() => handleNavClick("contact")}
               className="px-2.75 py-3 bg-white text-[#212121] font-medium text-base rounded-[14px] border border-white hover:bg-white/90 hover:scale-105 transition-all duration-500"
             >
-              big word
+              Get In Touch
             </button>
           </div>
 
@@ -109,10 +109,10 @@ const Navbar = () => {
             </button>
           ))}
           <button
-            onClick={() => handleNavClick("contact")}
+            onClick={() => handleNavClick("hero")}
             className="w-full px-7 py-3.5 bg-white text-[#212121] font-medium text-base rounded-[17px] border border-white hover:bg-white/90 transition-all duration-300 mt-2"
           >
-            NavBar.Jsx
+            Home
           </button>
         </div>
       </div>

@@ -30,17 +30,19 @@ const Hero = () => {
 
             <FadeIn delay={100}>
               <h1 className="text-4xl md:text-5xl lg:text-6xl font-normal text-white mb-6 leading-tight max-w-[500px]">
-                Cool big word for testing purposes
+                Always working.
               </h1>
             </FadeIn>
 
             <FadeIn delay={200}>
               <p className="text-lg text-white/70 max-w-[550px] mb-8 ">
-                Another cool big word for testing purposes Lorem ipsum dolor sit
-                amet consectetur adipisicing elit. Doloremque dolorum similique
-                pariatur perferendis, ducimus minus distinctio magni repellendus
-                corrupti ratione laborum optio odio aperiam quas nemo numquam
-                natus sapiente maiores.
+                I'm a self-taught developer with a passion for crafting clean,
+                performant web experiences from the ground up. Whether it's
+                building smooth user interfaces, writing efficient backend
+                logic, or picking up a new language just to solve a problem —
+                I'm always deep in something. I work primarily with Java,
+                Python, and JavaScript, but I'm never afraid to expand my stack
+                when the project calls for it.
               </p>
             </FadeIn>
 

@@ -40,5 +40,12 @@ export default [
     level: "Beginner",
     experience: "N/A",
   },
+  {
+    id: 9,
+    name: "Git",
+    icon: "Git",
+    level: "Intermediate",
+    experience: "N/A",
+  },
 ];
 

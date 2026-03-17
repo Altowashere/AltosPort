@@ -32,6 +32,7 @@ const Skills = () => {
       skills.find((s) => s.name === "JavaScript"), // Advanced
       skills.find((s) => s.name === "HTML"), // Advanced
       skills.find((s) => s.name === "C++"), // Intermediate
+      skills.find((s) => s.name === "Git"),
       skills.find((s) => s.name === "React.js"), // Intermediate
       skills.find((s) => s.name === "Luau"), // Beginner
       skills.find((s) => s.name === "Tailwind CSS"), // Beginner
@@ -81,10 +82,11 @@ const Skills = () => {
               Skills & Languages
             </h2>
             <p className="text-lg text-white/60 max-w-2xl mx-auto">
-              Lorem ipsum, dolor sit amet consectetur adipisicing elit. Sapiente
-              facilis id excepturi, numquam suscipit commodi et aspernatur ea
-              incidunt magni odit corrupti corporis rerum in quasi quia
-              voluptates nisi aut?
+              These are the languages and tools I've put real time into. Some
+              I've been using for years, some I picked up recently — but all of
+              them I can actually sit down and build something with. I'm always
+              adding to this list because there's always something new worth
+              learning.
             </p>
           </div>
         </FadeIn>
@@ -99,14 +101,17 @@ const Skills = () => {
                     {/* fixed: "border-whote/10" → "border-white/10" */}
                     <div className="w-1 h-8 bg-linear-to-b from-[#C9A84C]/30 to-[#C9A84C]/10 rounded-full"></div>
                     {/* fixed: "Text-xl" → "text-xl" */}
-                    <h3 className="text-xl font-medium text-white">{category}</h3>
+                    <h3 className="text-xl font-medium text-white">
+                      {category}
+                    </h3>
                   </div>
 
                   {/* Skills list */}
                   <div className="space-y-5">
                     {categorySkills.map((skill, skillIndex) => {
                       // fixed: now pulls from react-icons/si instead of lucide
-                      const IconComponent = Si[`Si${skill.icon}`] || Icons.Code2;
+                      const IconComponent =
+                        Si[`Si${skill.icon}`] || Icons.Code2;
                       const proficiency = getProficiencyLevel(skill.level);
 
                       return (

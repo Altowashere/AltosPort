@@ -184,7 +184,7 @@ const About = () => {
                 Tech Stack & Expertise
               </h3>
               <p className="text-sm text-white/60">
-                Technologies I work with to build amazing things
+                languages I work with to build amazing things
               </p>
             </div>
 
