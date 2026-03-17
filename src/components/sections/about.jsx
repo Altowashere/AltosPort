@@ -3,6 +3,7 @@ import { Download, Code2, Cloud } from "lucide-react";
 import {
   SiReact,
   SiPython,
+  SiOpenjdk,
   SiLuau,
   SiCplusplus,
   SiJavascript,
@@ -17,7 +18,7 @@ const About = () => {
   const skills = [
     { name: "React.js", icon: SiReact, color: "#61DAFB" },
     { name: "Python", icon: SiPython, color: "#3776AB" },
-    { name: "Luau", icon: SiLuau, color: "#00A2FF" },
+    { name: "Java", icon: SiOpenjdk, color: "#00A2FF" },
     { name: "C++", icon: SiCplusplus, color: "#00599C" },
     { name: "JavaScript", icon: SiJavascript, color: "#F7DF1E" },
     { name: "Html", icon: SiHtml5, color: "#E34F26" },
@@ -191,26 +192,15 @@ const About = () => {
               {skills.map((skill, index) => (
                 <div
                   key={index}
-                  className={`group relative bg-white/5 border border-white/10 rounded-2xl p-10 flex flex-col items-center justify-center gap-4 transition-all duration-300 hover:scale-105 w-full overflow-hidden
-                    ${
-                      index === skills.length - 1 && skills.length % 2 !== 0
-                        ? "col-span-2 md:col-span-1 md:col-start-2 lg:col-span-1 lg:col-start-auto"
-                        : ""
-                    }`}
+                  className={`group relative bg-white/5 border border-white/10 rounded-2xl p-10 flex flex-col items-center justify-center gap-4 transition-all duration-300 hover:scale-105 hover:border-[#C9A84C]/30 w-full overflow-hidden
+    ${
+      index === skills.length - 1 && skills.length % 2 !== 0
+        ? "col-span-2 md:col-span-1 md:col-start-2 lg:col-span-1 lg:col-start-auto"
+        : ""
+    }`}
                 >
                   {/* Background glow */}
-                  <div
-                    className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-2xl"
-                    style={{
-                      background: `radial-gradient(circle at center, #C9A84C18 0%, transparent 70%)`,
-                    }}
-                  />
-
-                  {/* Border glow on hover */}
-                  <div
-                    className="absolute inset-0 rounded-2xl border opacity-0 group-hover:opacity-100 transition-opacity duration-300"
-                    style={{ borderColor: `#C9A84C50` }}
-                  />
+                  <div className="absolute inset-0 bg-linear-to-br from-[#C9A84C]/10 to-[#C9A84C]/5 rounded-2xl blur-xl opacity-0 group-hover:opacity-75 transition-opacity duration-300" />
 
                   {/* Icon stays gold always */}
                   <skill.icon className="text-5xl relative z-10 text-[#C9A84C]" />

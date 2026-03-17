@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { ChevronDown, Section, Star, CodeXml } from "lucide-react";
-import { SiPython, SiGit, SiLuau, SiCplusplus } from "react-icons/si";
+import { SiPython, SiGit, SiOpenjdk, SiCplusplus } from "react-icons/si";
 import { Personal_info, STATS } from "../../utils/constants";
 import { scrollToSection } from "../../hooks/useScrollSpy";
 import FadeIn from "../animations/fadein";
@@ -105,12 +105,12 @@ const Hero = () => {
                         </div>
                       </a>
                       <a
-                        href="https://luau.org/"
+                        href="https://openjdk.org/"
                         target="_blank"
                         rel="noopener noreferrer"
                       >
                         <div className="w-6 h-6 flex items-center justify-center hover:scale-115 transition-transform duration-300">
-                          <SiLuau className="w-full h-full text-white hover:text-[#00A2FF] transition-colors duration-300" />
+                          <SiOpenjdk className="w-full h-full text-white hover:text-[#f89820] transition-colors duration-300" />
                         </div>
                       </a>
                       <a

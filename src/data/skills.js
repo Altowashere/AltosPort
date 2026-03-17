@@ -3,11 +3,11 @@
 //       Intermediate: 60,
 export default [
   { id: 1, name: "Python", icon: "Python", level: "Expert", experience: "N/A" },
-  { id: 2, name: "Java", icon: "Java", level: "Expert", experience: "N/A" },
+  { id: 2, name: "Java", icon: "Openjdk", level: "Expert", experience: "N/A" },
   {
     id: 3,
     name: "JavaScript",
-    icon: "JavaScript",
+    icon: "Javascript",
     level: "Advanced",
     experience: "N/A",
   },
