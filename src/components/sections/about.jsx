@@ -193,11 +193,11 @@ const About = () => {
                 <div
                   key={index}
                   className={`group relative bg-white/5 border border-white/10 rounded-2xl p-10 flex flex-col items-center justify-center gap-4 transition-all duration-300 hover:scale-105 hover:border-[#C9A84C]/30 w-full overflow-hidden
-    ${
-      index === skills.length - 1 && skills.length % 2 !== 0
-        ? "col-span-2 md:col-span-1 md:col-start-2 lg:col-span-1 lg:col-start-auto"
-        : ""
-    }`}
+                    ${
+                      index === skills.length - 1 && skills.length % 2 !== 0
+                        ? "col-span-2 md:col-span-1 md:col-start-2 lg:col-span-1 lg:col-start-auto"
+                        : ""
+                    }`}
                 >
                   {/* Background glow */}
                   <div className="absolute inset-0 bg-linear-to-br from-[#C9A84C]/10 to-[#C9A84C]/5 rounded-2xl blur-xl opacity-0 group-hover:opacity-75 transition-opacity duration-300" />

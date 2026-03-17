@@ -1,6 +1,6 @@
 export const Personal_info = {
   name: "A",
-  title: "Backend Programmer",
+  title: "Programmer",
   email: "CoolTempEmail@gmail.com",
   location: "Virtually",
   tagline: "Cool tuff line",
