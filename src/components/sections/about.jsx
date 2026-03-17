@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { Download, Code2, Cloud } from "lucide-react";
 import {
   SiReact,
@@ -12,17 +12,18 @@ import {
 import { Personal_info, About_STATS } from "../../utils/constants";
 import FadeIn from "../animations/fadein";
 import RadialGradientBackground from "../backgrounds/RadialGradientBackground";
+
 const About = () => {
-  //skills
   const skills = [
-    { name: "React.js", icon: SiReact, color: "#000000" }, //prob will get claude to find me a better color to fit with bg.
-    { name: "Python", icon: SiPython, color: "#000000" },
-    { name: "Luau", icon: SiLuau, color: "#000000" },
-    { name: "C++", icon: SiCplusplus, color: "#000000" },
-    { name: "JavaScript", icon: SiJavascript, color: "#000000" },
-    { name: "Html", icon: SiHtml5, color: "#000000" },
-    { name: "TailWindCss", icon: SiTailwindcss, color: "#000000" },
+    { name: "React.js", icon: SiReact, color: "#61DAFB" },
+    { name: "Python", icon: SiPython, color: "#3776AB" },
+    { name: "Luau", icon: SiLuau, color: "#00A2FF" },
+    { name: "C++", icon: SiCplusplus, color: "#00599C" },
+    { name: "JavaScript", icon: SiJavascript, color: "#F7DF1E" },
+    { name: "Html", icon: SiHtml5, color: "#E34F26" },
+    // { name: "TailWindCss", icon: SiTailwindcss, color: "#06B6D4" },
   ];
+
   return (
     <section id="about" className="relative py-20 bg-black overflow-hidden">
       <RadialGradientBackground variant="hero" />
@@ -90,8 +91,8 @@ const About = () => {
               </button>
             </FadeIn>
           </div>
-          {/* Right Column -info grid  */}
-          {/* Right Column -info grid  */}
+
+          {/* Right Column - info grid */}
           <FadeIn delay={200}>
             <div className="grid grid-cols-2 gap-4">
               <div className="col-span-2 relative group">
@@ -106,7 +107,7 @@ const About = () => {
                         Expertise
                       </h3>
                       <p className="text-sm text-white/70 leading-relaxed">
-                        Chat gpt will fill this out later 😛
+                        Test
                       </p>
                     </div>
                   </div>
@@ -122,9 +123,7 @@ const About = () => {
                   <h3 className="text-lg font-semibold text-white mb-2">
                     Clean Code
                   </h3>
-                  <p className="text-sm text-white/70 leading-relaxed">
-                    Chat gpt will fill this out later 😛
-                  </p>
+                  <p className="text-sm text-white/70 leading-relaxed">Test</p>
                 </div>
               </div>
 
@@ -137,9 +136,7 @@ const About = () => {
                   <h3 className="text-lg font-semibold text-white mb-2">
                     Performance
                   </h3>
-                  <p className="text-sm text-white/70 leading-relaxed">
-                    Chat gpt will fill this out later 😛
-                  </p>
+                  <p className="text-sm text-white/70 leading-relaxed">Test</p>
                 </div>
               </div>
 
@@ -177,6 +174,56 @@ const About = () => {
             </div>
           </FadeIn>
         </div>
+
+        {/* Skills grid Section */}
+        <FadeIn delay={500}>
+          <div className="flex flex-col items-center gap-8">
+            <div className="text-center">
+              <h3 className="text-2xl font-normal text-white mb-2">
+                Tech Stack & Expertise
+              </h3>
+              <p className="text-sm text-white/60">
+                Technologies I work with to build amazing things
+              </p>
+            </div>
+
+            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4 w-full">
+              {skills.map((skill, index) => (
+                <div
+                  key={index}
+                  className={`group relative bg-white/5 border border-white/10 rounded-2xl p-10 flex flex-col items-center justify-center gap-4 transition-all duration-300 hover:scale-105 w-full overflow-hidden
+                    ${
+                      index === skills.length - 1 && skills.length % 2 !== 0
+                        ? "col-span-2 md:col-span-1 md:col-start-2 lg:col-span-1 lg:col-start-auto"
+                        : ""
+                    }`}
+                >
+                  {/* Background glow */}
+                  <div
+                    className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-2xl"
+                    style={{
+                      background: `radial-gradient(circle at center, #C9A84C18 0%, transparent 70%)`,
+                    }}
+                  />
+
+                  {/* Border glow on hover */}
+                  <div
+                    className="absolute inset-0 rounded-2xl border opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+                    style={{ borderColor: `#C9A84C50` }}
+                  />
+
+                  {/* Icon stays gold always */}
+                  <skill.icon className="text-5xl relative z-10 text-[#C9A84C]" />
+
+                  {/* Skill name */}
+                  <div className="text-sm text-white/80 font-medium text-center relative z-10 group-hover:text-white transition-colors duration-300">
+                    {skill.name}
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </FadeIn>
       </div>
     </section>
   );
