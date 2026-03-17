@@ -4,6 +4,7 @@ import Hero from "./components/sections/hero";
 import About from "./components/sections/about";
 import WipBanner from "./components/ui/WipBanner";
 import { useEffect } from "react";
+import Skills from "../src/components/sections/Skills";
 
 
 
@@ -19,7 +20,8 @@ const App = () => {
       <Navbar />
       <main>
         <Hero />
-        <About/>
+        <About />
+        <Skills/>
       </main>
     </div>
   );

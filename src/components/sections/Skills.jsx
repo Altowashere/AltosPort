@@ -44,7 +44,7 @@ const Skills = () => {
       Expert: 90,
       Advanced: 75,
       Intermediate: 50,
-      Beginner: 50,
+      Beginner: 35,
     };
     return levels[level] || 50;
   };
