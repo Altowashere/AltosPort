@@ -108,7 +108,7 @@ const About = () => {
                         Expertise
                       </h3>
                       <p className="text-sm text-white/70 leading-relaxed">
-                        Test
+                        Self-taught developer with hands-on experience
                       </p>
                     </div>
                   </div>
@@ -124,7 +124,10 @@ const About = () => {
                   <h3 className="text-lg font-semibold text-white mb-2">
                     Clean Code
                   </h3>
-                  <p className="text-sm text-white/70 leading-relaxed">Test</p>
+                  <p className="text-sm text-white/70 leading-relaxed">
+                    Readable, maintainable, and built to last — not just to
+                    ship.
+                  </p>
                 </div>
               </div>
 
@@ -137,7 +140,10 @@ const About = () => {
                   <h3 className="text-lg font-semibold text-white mb-2">
                     Performance
                   </h3>
-                  <p className="text-sm text-white/70 leading-relaxed">Test</p>
+                  <p className="text-sm text-white/70 leading-relaxed">
+                    Every project is optimized for speed, efficiency, and a
+                    smooth experience.
+                  </p>
                 </div>
               </div>
 
@@ -147,27 +153,21 @@ const About = () => {
                   <div className="grid grid-cols-3 gap-6 text-center">
                     <div>
                       <div className="text-2xl font-bold text-[#C9A84C]/60 mb-1">
-                        N/A
+                        2+
                       </div>
-                      <div className="text-xs text-white/60">
-                        Temporary Value
-                      </div>
+                      <div className="text-xs text-white/60">Libraries</div>
                     </div>
                     <div>
                       <div className="text-2xl font-bold text-[#C9A84C]/60 mb-1">
-                        N/A
+                        10+
                       </div>
-                      <div className="text-xs text-white/60">
-                        Temporary Value
-                      </div>
+                      <div className="text-xs text-white/60">Tools Used</div>
                     </div>
                     <div>
                       <div className="text-2xl font-bold text-[#C9A84C]/60 mb-1">
-                        N/A
+                        3+
                       </div>
-                      <div className="text-xs text-white/60">
-                        Temporary Value
-                      </div>
+                      <div className="text-xs text-white/60">Repos Public</div>
                     </div>
                   </div>
                 </div>

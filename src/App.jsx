@@ -17,7 +17,7 @@ const App = () => {
 
   return (
     <div className="min-h-screen bg-black">
-      {/* <WipBanner /> */}
+      <WipBanner />
       <Navbar />
       <main>
         <LandingPage />
