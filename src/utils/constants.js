@@ -14,9 +14,9 @@ export const Personal_info = {
 };
 
 export const Social_links = {
-  github: "https://github.com/",
+  github: "https://github.com/Altowashere",
   twitter: "https://x.com/",
-  discord: "https://discord.com/",
+  discord: "https://discord.com/users/843832572689121300",
   gmail: "https://gmail.com/",
 };
 

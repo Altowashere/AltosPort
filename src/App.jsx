@@ -7,6 +7,8 @@ import { useEffect } from "react";
 import Skills from "../src/components/sections/Skills";
 import Projects from "./components/sections/Projects";
 import ServiceContainer from "./components/sections/ServiceContainer";
+import ContactService from "./components/sections/ContactService";
+import Footer from "./components/layout/Footer"
 const App = () => {
   useEffect(() => {
     window.history.scrollRestoration = "manual";
@@ -23,7 +25,9 @@ const App = () => {
         <Skills />
         <Projects />
         <ServiceContainer />
+        <ContactService />
       </main>
+      <Footer />
     </div>
   );
 };
