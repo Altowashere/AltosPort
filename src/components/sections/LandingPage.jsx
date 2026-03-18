@@ -6,13 +6,13 @@ import { scrollToSection } from "../../hooks/useScrollSpy";
 import FadeIn from "../animations/fadein";
 import RadialGradientBackground from "../backgrounds/RadialGradientBackground";
 
-const Hero = () => {
+const LandingPage = () => {
   return (
     <section
-      id="hero"
+      id="home"
       className="relative min-h-screen flex items-center overflow-hidden bg-black"
     >
-      <RadialGradientBackground varient="hero" />
+      <RadialGradientBackground varient="LandingPage" />
 
       {/*Content container The cool thing witht he star*/}
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 w-full">
@@ -152,4 +152,4 @@ const Hero = () => {
   );
 };
 
-export default Hero;
+export default LandingPage;

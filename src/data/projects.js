@@ -13,7 +13,7 @@ export const projects = [
   },
   {
     id: 2,
-    title: "NexusChat1",
+    title: "Demo1",
     description:
       "A real-time messaging platform with live presence indicators, message threading, and end-to-end encryption built for teams.",
     image: "public/images/projects/Tuff git pfp.jpg",
@@ -25,7 +25,7 @@ export const projects = [
   },
   {
     id: 3,
-    title: "NexusChat2",
+    title: "Demo2",
     description:
       "A real-time messaging platform with live presence indicators, message threading, and end-to-end encryption built for teams.",
     image: "public/images/projects/Tuff git pfp.jpg",
@@ -37,7 +37,7 @@ export const projects = [
   },
   {
     id: 4,
-    title: "NexusChat",
+    title: "Demo3",
     description:
       "A real-time messaging platform with live presence indicators, message threading, and end-to-end encryption built for teams.",
     image: "public/images/projects/Tuff git pfp.jpg",

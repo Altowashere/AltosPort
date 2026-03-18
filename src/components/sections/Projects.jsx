@@ -184,9 +184,9 @@ const Projects = () => {
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <FadeIn delay={0}>
           <div className="text-center mb-12">
-            <div className="inline-flex items-center gap-2 px-4 py-2 bg-[#C9A84C]/10 border border-[#C9A84C]/30 rounded-full mb-6">
+            <div className="inline-flex items-center gap-2 px-4 py-2 bg-[#C9A84C]/10 border border-[#C9A84C]/30 rounded-full mb-6 hover:scale-102 transition-all duration-300">
               <Briefcase className="w-4 h-4 text-[#C9A84C]" />
-              <span className="text-sm text-[#C9A84C] font-medium">
+              <span className="text-sm text-[#C9A84C] font-medium ">
                 My work
               </span>
             </div>

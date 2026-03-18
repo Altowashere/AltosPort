@@ -1,12 +1,12 @@
 import React from "react";
 import Navbar from "./components/layout/Navbar";
-import Hero from "./components/sections/hero";
+import LandingPage from "./components/sections/LandingPage";
 import About from "./components/sections/about";
 import WipBanner from "./components/ui/WipBanner";
 import { useEffect } from "react";
 import Skills from "../src/components/sections/Skills";
 import Projects from "./components/sections/Projects";
-
+import ServiceContainer from "./components/sections/ServiceContainer";
 const App = () => {
   useEffect(() => {
     window.history.scrollRestoration = "manual";
@@ -18,10 +18,11 @@ const App = () => {
       <WipBanner />
       <Navbar />
       <main>
-        <Hero />
+        <LandingPage />
         <About />
         <Skills />
         <Projects />
+        <ServiceContainer />
       </main>
     </div>
   );
