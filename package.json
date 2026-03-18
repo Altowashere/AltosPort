@@ -1,7 +1,7 @@
 {
   "name": "vite-project",
+  "homepage": "http://Altowashere.github.io/AltosPort/",
   "private": true,
-  "homepage": "http://Altowashere.github.io/AltosPort",
   "version": "0.0.0",
   "type": "module",
   "scripts": {
@@ -10,7 +10,7 @@
     "lint": "eslint .",
     "preview": "vite preview",
     "predeploy": "npm run build",
-    "deploy": "gh-pages -d build"
+    "deploy": "gh-pages -d dist"
   },
   "dependencies": {
     "@tailwindcss/vite": "^4.2.1",
