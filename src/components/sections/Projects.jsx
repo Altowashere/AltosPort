@@ -1,10 +1,12 @@
-import React, { useState, useRef, useEffect } from "react";
+import React, { useState, useRef } from "react";
 import { projects, categories } from "../../data/projects";
 import {
   Briefcase,
+  Sparkles,
   Target,
   Globe,
   Palette,
+  Cloud,
   Zap,
   ChevronLeft,
   ChevronRight,
@@ -15,148 +17,160 @@ import FadeIn from "../animations/fadein";
 const Projects = () => {
   const [activeCategory, SetActiveCategory] = useState("All");
   const [currentIndex, setCurrentIndex] = useState(0);
-  const scrollContainerRef = useRef(null);
-  // Tracks whether a scroll animation is currently in progress.
-  // Used to debounce button clicks so spamming can't break the loop logic.
-  const isScrolling = useRef(false);
 
-  // Number of cards to clone at each end of the carousel.
-  // We prepend the last 3 cards and append the first 3 cards so that
-  // when the user scrolls past either edge, there's always a real-looking
-  // card to scroll into before we silently snap back to the real list.
-  const CLONE_COUNT = 3;
+  // The card being slid in during animation — null when idle.
+  // We render 4 cards total during a transition (3 visible + 1 entering/exiting),
+  // which makes it look like only one individual card moves at a time.
+  const [extraCard, setExtraCard] = useState(null);
+
+  // Which side the extra card is added to.
+  // 'right' = next slide (extra card enters from right)
+  // 'left'  = prev slide (extra card enters from left)
+  const [extraSide, setExtraSide] = useState("right");
+
+  // The current horizontal offset of the 4-card row in pixels.
+  // 0 = showing the first 3 cards, -step = showing the last 3 cards.
+  const [slideX, setSlideX] = useState(0);
+
+  // When true, CSS transition is active so the slide animates.
+  // When false, we can reposition the row instantly without the user seeing it.
+  const [sliding, setSliding] = useState(false);
+
+  // Ref for the overflow-hidden wrapper — used to measure width for step distance.
+  const containerRef = useRef(null);
+
+  // Prevents clicks while a slide animation is in progress.
+  const isAnimating = useRef(false);
 
   const filteredProjects =
     activeCategory === "All"
       ? projects
       : projects.filter((project) => project.category === activeCategory);
 
-  // Only clone and loop when there are more than 3 projects.
-  // With 3 or fewer, cloning would duplicate the same cards visibly on screen.
-  const shouldLoop = filteredProjects.length > 3;
-  const lastClones = shouldLoop ? filteredProjects.slice(-CLONE_COUNT) : [];
-  const firstClones = shouldLoop ? filteredProjects.slice(0, CLONE_COUNT) : [];
-  const loopProjects = shouldLoop
-    ? [...lastClones, ...filteredProjects, ...firstClones]
-    : filteredProjects;
-
-  // Any time the active category changes, we silently reset the scroll position
-  // to be past the prepended clones so real index 0 is the first visible card.
-  // We use scrollLeft (instant, no animation) so the user never sees the jump.
-  useEffect(() => {
-    const container = scrollContainerRef.current;
-    if (!container) return;
-    const firstCard = container.querySelector(".snap-start");
-    const cardWidth = firstCard
-      ? firstCard.offsetWidth + 24
-      : container.offsetWidth / 3;
-    // Only offset by CLONE_COUNT if we're actually using clones
-    container.scrollLeft = shouldLoop ? cardWidth * CLONE_COUNT : 0;
-    setCurrentIndex(0);
-  }, [activeCategory]);
-
   // Reset carousel when Category changes
   const HandleCategoryChange = (category) => {
     SetActiveCategory(category);
     setCurrentIndex(0);
-    if (scrollContainerRef.current) {
-      scrollContainerRef.current.scrollTo({ left: 0, behavior: "smooth" });
-    }
+    // Instantly reset slide position with no animation when switching categories
+    setExtraCard(null);
+    setSliding(false);
+    setSlideX(0);
   };
 
-  const scrollToIndex = (index) => {
-    setCurrentIndex(index);
-    if (scrollContainerRef.current) {
-      const container = scrollContainerRef.current;
-      const firstCard = container.querySelector(".snap-start");
-      const cardWidth = firstCard
-        ? firstCard.offsetWidth + 24
-        : container.offsetWidth / 3;
-      // Only add the clone offset if looping is active
-      container.scrollTo({
-        left: cardWidth * (index + (shouldLoop ? CLONE_COUNT : 0)),
-        behavior: "smooth",
+  // Only loop when there are more than 3 projects
+  const shouldLoop = filteredProjects.length > 3;
+
+  // Returns exactly 3 real projects based on currentIndex using modulo.
+  // No cloning — always fresh real data so stale fields can never bleed through.
+  const getVisibleProjects = () => {
+    const len = filteredProjects.length;
+    if (len === 0) return [];
+    if (len <= 3) return filteredProjects;
+    return [0, 1, 2].map(
+      (offset) => filteredProjects[(currentIndex + offset) % len],
+    );
+  };
+
+  // During animation we render 4 cards so only one card appears to move.
+  // extra card is prepended (left) or appended (right) to the 3 visible ones.
+  // When idle, just the normal 3.
+  const renderProjects = extraCard
+    ? extraSide === "right"
+      ? [...getVisibleProjects(), extraCard] // [A, B, C, entering]
+      : [extraCard, ...getVisibleProjects()] // [entering, A, B, C]
+    : getVisibleProjects();
+
+  // One slide step = one card width + one gap.
+  // With 3 cards in a container of width W and gap-6 (24px each gap):
+  // cardWidth = (W - 2*24) / 3, step = cardWidth + 24 = (W + 24) / 3
+  const getStep = () =>
+    containerRef.current ? (containerRef.current.offsetWidth + 24) / 3 : 400;
+
+  const animate = (indexUpdater, dir) => {
+    if (isAnimating.current) return;
+    isAnimating.current = true;
+
+    const len = filteredProjects.length;
+    const step = getStep();
+
+    if (dir === 1) {
+      // NEXT: add the incoming card to the right → [A, B, C, D]
+      // Row starts at slideX=0 showing [A,B,C], then slides left to show [B,C,D].
+      const newCard = filteredProjects[(currentIndex + 3) % len];
+      setExtraCard(newCard);
+      setExtraSide("right");
+      setSlideX(0);
+      setSliding(false);
+
+      // Double rAF ensures the 4-card row renders at x=0 before we start sliding.
+      // Without this React may batch the updates and skip the starting position.
+      requestAnimationFrame(() => {
+        requestAnimationFrame(() => {
+          setSliding(true);
+          setSlideX(-step); // slide left by one card — D enters, A exits
+        });
+      });
+    } else {
+      // PREV: add the incoming card to the left → [Z, A, B, C]
+      // Row starts at slideX=-step (so [A,B,C] are visible, Z is off-screen left),
+      // then slides right to 0 so [Z,A,B] are visible — Z enters, C exits.
+      const newCard = filteredProjects[(currentIndex - 1 + len) % len];
+      setExtraCard(newCard);
+      setExtraSide("left");
+      setSliding(false);
+      setSlideX(-step); // instant placement — Z is off-screen, [A,B,C] visible
+
+      requestAnimationFrame(() => {
+        requestAnimationFrame(() => {
+          setSliding(true);
+          setSlideX(0); // slide right — Z enters from left, C exits right
+        });
       });
     }
+
+    // After the 300ms slide finishes: update the index, clean up the extra card.
+    // getVisibleProjects() with the new index returns exactly the 3 cards
+    // that are now visible, so the switch from 4 cards back to 3 is seamless.
+    setTimeout(() => {
+      indexUpdater();
+      setExtraCard(null);
+      setSliding(false);
+      setSlideX(0);
+      isAnimating.current = false;
+    }, 300); // must match the CSS transition duration below
   };
 
   const nextSlide = () => {
-    const maxIndex = Math.max(0, filteredProjects.length - 3);
-    const nextIndex = currentIndex + 1;
-    // If a scroll is already in progress, ignore the click entirely
-    if (isScrolling.current) return;
-    isScrolling.current = true;
-    setTimeout(() => (isScrolling.current = false), 350); // Unlock after animation finishes
-
-    if (nextIndex > maxIndex) {
-      // We're at the last real card. Smoothly scroll into the appended first-clone,
-      // which looks identical to real index 0. Once the animation finishes (~350ms),
-      // we silently jump scroll back to the actual real index 0 position.
-      // The user sees a smooth scroll forward, then never sees the reset.
-      const container = scrollContainerRef.current;
-      const firstCard = container.querySelector(".snap-start");
-      const cardWidth = firstCard
-        ? firstCard.offsetWidth + 24
-        : container.offsetWidth / 3;
-
-      container.scrollTo({
-        left: cardWidth * (CLONE_COUNT + maxIndex + 1),
-        behavior: "smooth",
-      });
-
-      setTimeout(() => {
-        // Temporarily disable smooth scrolling so the silent reset is instant.
-        // Without this the browser would animate the snap-back and expose the trick.
-        container.style.scrollBehavior = "auto";
-        container.scrollLeft = cardWidth * CLONE_COUNT;
-        container.style.scrollBehavior = "";
-        setCurrentIndex(0);
-      }, 350); // 350ms matches the browser smooth scroll duration
-    } else {
-      scrollToIndex(nextIndex);
-    }
+    animate(
+      () => setCurrentIndex((prev) => (prev + 1) % filteredProjects.length),
+      1,
+    );
   };
 
   const prevSlide = () => {
-    const maxIndex = Math.max(0, filteredProjects.length - 3);
-    const prevIndex = currentIndex - 1;
-    if (isScrolling.current) return;
-    isScrolling.current = true;
-    setTimeout(() => (isScrolling.current = false), 350); // Unlock after animation finishes
+    animate(
+      () =>
+        setCurrentIndex(
+          (prev) =>
+            (prev - 1 + filteredProjects.length) % filteredProjects.length,
+        ),
+      -1,
+    );
+  };
 
-    if (prevIndex < 0) {
-      // We're at the first real card. Smoothly scroll into the prepended last-clone,
-      // which looks identical to the real last card. After the animation we silently
-      // jump to the actual real last card position so looping works both ways.
-      const container = scrollContainerRef.current;
-      const firstCard = container.querySelector(".snap-start");
-      const cardWidth = firstCard
-        ? firstCard.offsetWidth + 24
-        : container.offsetWidth / 3;
-
-      container.scrollTo({
-        left: cardWidth * (CLONE_COUNT - 1),
-        behavior: "smooth",
-      });
-
-      setTimeout(() => {
-        // Same instant-reset trick as nextSlide — disable smooth scroll briefly,
-        // jump to real last position, then re-enable. User never sees the snap.
-        container.style.scrollBehavior = "auto";
-        container.scrollLeft = cardWidth * (maxIndex + CLONE_COUNT);
-        container.style.scrollBehavior = "";
-        setCurrentIndex(maxIndex);
-      }, 350); // 350ms matches the browser smooth scroll duration
-    } else {
-      scrollToIndex(prevIndex);
-    }
+  // Jump directly to a specific index via dots — instant, no slide animation
+  const scrollToIndex = (index) => {
+    if (isAnimating.current) return;
+    setCurrentIndex(index);
+    setExtraCard(null);
+    setSlideX(0);
   };
 
   // Category icon Mapping
   const categoryIcons = {
     All: Target,
-    Frontend: Globe,
-    Backend: Palette,
+    Frontend: Palette,
+    Backend: Cloud,
     "Full Stack": Zap,
   };
 
@@ -180,11 +194,9 @@ const Projects = () => {
               Featured Projects
             </h2>
             <p className="text-lg text-white/60 max-w-2xl mx-auto">
-              Lorem, ipsum dolor sit amet consectetur adipisicing elit.
-              Repudiandae, beatae perspiciatis inventore, totam sunt distinctio
-              maiores praesentium recusandae blanditiis saepe atque numquam
-              repellendus quod, corrupti doloremque. Consequuntur culpa
-              architecto eius.
+              Here's a collection of things I've built — from quick experiments
+              to projects I'm genuinely proud of. Each one taught me something
+              new.
             </p>
           </div>
         </FadeIn>
@@ -203,10 +215,10 @@ const Projects = () => {
                 }`}
               >
                 <div
-                  className={`absolute inset-0 rounded-full transition-all duration-300 ${
+                  className={`absolute inset-0 rounded-full transition-[background-color] duration-300 ${
                     activeCategory === category
-                      ? "bg-[#C9A84C]/10 opacity-100"
-                      : "bg-white/5 border border-white/10 group-hover:bg-white/10"
+                      ? "border hover:border-white/10 bg-[#C9A84C]/10 opacity-100"
+                      : "bg-white/5  group-hover:bg-white/10"
                   }`}
                 />
                 <div className="relative flex items-center gap-2">
@@ -227,35 +239,40 @@ const Projects = () => {
         {/* Projects Carousel */}
         <FadeIn delay={200}>
           <div className="relative mx-10 lg:mx-14">
-            <div
-              ref={scrollContainerRef}
-              className="overflow-x-auto scroll-smooth snap-x snap-mandatory hide-scrollbar"
-            >
-              {/* Render loopProjects instead of filteredProjects.
-                  loopProjects = [clones of last 3] + [real cards] + [clones of first 3]
-                  The key uses both project.id and the loop index i because cloned cards
-                  share the same id as their originals — using i makes each key unique. */}
+            {/* overflow-hidden clips the 4-card row so only 3 are ever visible.
+                ref measures the container width to compute the slide step distance. */}
+            <div className="overflow-hidden" ref={containerRef}>
+              {/* This is the row that physically moves during animation.
+                  sliding toggles the CSS transition on/off so we can instant-reset
+                  the starting position before each animation without a visible jump. */}
               <div
-                className={`flex gap-6 pb-4 ${!shouldLoop ? "justify-center" : ""}`}
+                style={{
+                  transform: `translateX(${slideX}px)`,
+                  transition: sliding ? "transform 300ms ease" : "none",
+                }}
               >
-                {loopProjects.map((project, i) => (
-                  <div
-                    key={`${project.id}-${i}`}
-                    className="w-full md:w-[calc(50%-12px)] lg:w-[calc(33.333%-16px)] shrink-0 snap-start"
-                  >
-                    <ProjectCard project={project} />
-                  </div>
-                ))}
+                <div
+                  className={`flex gap-6 pb-4 ${!shouldLoop ? "justify-center" : ""}`}
+                >
+                  {/* Use project.id as key — all 4 cards during animation are real
+                      unique projects so ids are always distinct, no stale data. */}
+                  {renderProjects.map((project) => (
+                    <div
+                      key={project.id}
+                      className="w-full md:w-[calc(50%-12px)] lg:w-[calc(33.333%-16px)] shrink-0"
+                    >
+                      <ProjectCard project={project} />
+                    </div>
+                  ))}
+                </div>
               </div>
             </div>
-            {/* Nav Arrows */}
-            {filteredProjects.length > 3 && (
+
+            {/* Nav Arrows — only shown when looping is active */}
+            {shouldLoop && (
               <>
                 <button
                   onClick={prevSlide}
-                  // Removed disabled — buttons are never disabled since
-                  // wrapping is now handled inside prevSlide/nextSlide
-                  disabled={false}
                   className="flex absolute -left-5 top-1/2 -translate-y-1/2 items-center justify-center w-10 h-10 lg:w-12 lg:h-12 bg-white/10 backdrop-blur-sm border border-white/20 rounded-full hover:bg-white/20 transition-all duration-300 z-10"
                   aria-label="Previous Projects"
                 >
@@ -264,9 +281,6 @@ const Projects = () => {
 
                 <button
                   onClick={nextSlide}
-                  // Removed disabled — buttons are never disabled since
-                  // wrapping is now handled inside prevSlide/nextSlide
-                  disabled={false}
                   className="flex absolute -right-5 top-1/2 -translate-y-1/2 items-center justify-center w-10 h-10 lg:w-12 lg:h-12 bg-white/10 backdrop-blur-sm border border-white/20 rounded-full hover:bg-white/20 transition-all duration-300 z-10"
                   aria-label="Next Projects"
                 >
@@ -274,13 +288,11 @@ const Projects = () => {
                 </button>
               </>
             )}
-            {/* Nav Dots */}
-            {filteredProjects.length > 3 && (
-              // Fix: added flex layout so dots actually render visibly
+
+            {/* Nav Dots — one dot per project, highlights the current start index */}
+            {shouldLoop && (
               <div className="flex justify-center gap-2 mt-6">
-                {Array.from({
-                  length: Math.max(0, filteredProjects.length - 2),
-                }).map((_, index) => (
+                {filteredProjects.map((_, index) => (
                   <button
                     key={index}
                     onClick={() => scrollToIndex(index)}
