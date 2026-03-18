@@ -1,9 +1,9 @@
 export const Personal_info = {
   name: "A",
   title: "Programmer",
-  email: "CoolTempEmail@gmail.com",
+  email: "@Altowashere on Discord.",
   location: "Virtually",
-  tagline: "Cool tuff line",
+  tagline: "Always aiming to better myself.",
   resume: "public\temp resume file annoation reading.pdf",
   bio: [
     "I'm a student and self-taught developer with a passion for building clean, purposeful software.",

@@ -16,8 +16,8 @@ const App = () => {
   }, []);
 
   return (
-    <div className="min-h-screen bg-black pb-[180vh]">
-      <WipBanner />
+    <div className="min-h-screen bg-black">
+      {/* <WipBanner /> */}
       <Navbar />
       <main>
         <LandingPage />
