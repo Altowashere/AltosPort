@@ -7,24 +7,21 @@ import { useEffect } from "react";
 import Skills from "../src/components/sections/Skills";
 import Projects from "./components/sections/Projects";
 
-
-
-
 const App = () => {
-    useEffect(() => {
-      window.history.scrollRestoration = "manual";
-      window.scrollTo(0, 0);
-    }, []);
+  useEffect(() => {
+    window.history.scrollRestoration = "manual";
+    window.scrollTo(0, 0);
+  }, []);
 
   return (
     <div className="min-h-screen bg-black pb-[180vh]">
-      <WipBanner /> 
+      <WipBanner />
       <Navbar />
       <main>
         <Hero />
         <About />
         <Skills />
-        {/* <Projects/> */}
+        <Projects />
       </main>
     </div>
   );
